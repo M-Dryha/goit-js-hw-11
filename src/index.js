@@ -34,8 +34,8 @@ function loadMore(e) {
   e.preventDefault();
   fetch();
   page += 1;
+ 
 }
-
 
 function onShowGalleryItem(e) {
     e.preventDefault();
@@ -61,14 +61,26 @@ function onRequest(data) {
          Notify.failure("Sorry, there are no images matching your search query. Please try again.");
          return;
      }
+  
+      if (page > data.data.totalHits / data.data.hits.length) {
+        Notify.warning("We're sorry, but you've reached the end of search results.");
+        loadBtn.classList.add('is-hidden');
+      return;
+      }
+  
     renderGallery(data);
 }
 
 
 function renderGallery(data) {
+
+  const render = data.data.hits;
     
+      if (page === 1) {
+    Notify.success(`"Hooray! We found ${data.data.totalHits} images."`)
     
-    const render = data.data.hits
+  }
+   
     const galleryData = render.map(({webformatURL,largeImageURL,tags,likes,views,comments,downloads }) => 
         `<div class="photo-card">
        <a href='${largeImageURL}' class = "photo-link">
@@ -94,8 +106,7 @@ function renderGallery(data) {
   
     
     galleryItem.insertAdjacentHTML('beforeend', galleryData);
-    // page += 1;
-  loadBtn.classList.remove('is-hidden');
+    loadBtn.classList.remove('is-hidden');
  }
  
 
