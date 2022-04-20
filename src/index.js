@@ -25,6 +25,15 @@ function loadMore(e) {
   fetch();
 }
 
+function fetch() {
+   APIService.fetchData(input.value, page)
+         .then(onRequest)
+            .catch(error => {
+                 Notify.failure("Ooops, something is getting wrong");
+                console.log(error);
+            });       
+}
+
 function onShowGalleryItem(e) {
     e.preventDefault();
 
@@ -34,15 +43,6 @@ function onShowGalleryItem(e) {
       loadBtn.classList.add('is-hidden');
       fetch();
     }
-}
-
-function fetch() {
-   APIService.fetchData(input.value, page)
-         .then(onRequest)
-            .catch(error => {
-                 Notify.failure("Ooops, something is getting wrong");
-                console.log(error);
-            });       
 }
 
 function onRequest(data) {
@@ -55,8 +55,6 @@ function onRequest(data) {
   
       if (page > data.data.totalHits / data.data.hits.length) {
         Notify.warning("We're sorry, but you've reached the end of search results.");
-        galleryItem.innerHTML = '';
-     
       return;
       }
   

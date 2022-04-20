@@ -1,6 +1,5 @@
 export function renderData(data) {
 
-    //  const render = data.data.hits;
      return data.map(({webformatURL,largeImageURL,tags,likes,views,comments,downloads }) => 
         `<div class="photo-card">
        <a href='${largeImageURL}' class = "photo-link">
