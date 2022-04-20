@@ -14,6 +14,7 @@ const galleryItem = document.querySelector('.gallery');
 const loadBtn = document.querySelector('.load-more');
 
 
+
 let page = 1;
 const inputData = input.value;
  
@@ -117,6 +118,17 @@ function renderGallery(data) {
   if (page > 1) {
     lightbox.refresh();
   }
+
+  if (page > 2) {
+    const { height: cardHeight } = document
+  .querySelector(".gallery")
+  .firstElementChild.getBoundingClientRect();
+    window.scrollBy({
+      top: cardHeight * 2,
+      behavior: "smooth",
+    });
+  }
+  
  }
  
 
