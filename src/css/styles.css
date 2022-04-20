@@ -120,6 +120,7 @@ body {
 .info-item {
   text-align: center;
   font-size: 13px;
+  padding: 5px;
 }
 
 span {
