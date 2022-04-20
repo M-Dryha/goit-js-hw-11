@@ -123,6 +123,11 @@ body {
   padding: 5px;
 }
 
+.info-item:last-child {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 span {
   font-weight: 900;
 }
