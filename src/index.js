@@ -35,9 +35,10 @@ function fetch() {
 }
 
 function onShowGalleryItem(e) {
-    e.preventDefault();
+  e.preventDefault();
+  const value = input.value.trim();
 
-    if (input.value) {
+    if (value) {
       galleryItem.innerHTML = '';
       page = 1;
       loadBtn.classList.add('is-hidden');
@@ -53,7 +54,7 @@ function onRequest(data) {
        return;
      }
   
-      if (page > data.data.totalHits / data.data.hits.length) {
+      if (data.data.totalHits !== 0 && data.data.hits.length === 0) {
         Notify.warning("We're sorry, but you've reached the end of search results.");
       return;
       }
